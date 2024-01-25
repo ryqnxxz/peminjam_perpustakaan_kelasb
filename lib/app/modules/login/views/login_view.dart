@@ -16,8 +16,8 @@ class LoginView extends GetView<LoginController> {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Color(0xFFFA6269),
-              Color(0xFF575757),
+              Color(0xFFE32933),
+              Color(0xFF903333),
             ],
           ),
         ),
@@ -29,7 +29,7 @@ class LoginView extends GetView<LoginController> {
               width: MediaQuery.of(context).size.width-100,
               height: 600,
               decoration: BoxDecoration(
-                color: Colors.grey[300], // Warna abu di tengah
+                color: Colors.grey[300],
                 borderRadius: BorderRadius.circular(55),
               ),
               padding: EdgeInsets.all(20),
@@ -39,7 +39,7 @@ class LoginView extends GetView<LoginController> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.account_circle,
+                      Icons.account_circle_rounded,
                       size: 80,
                     ),
                     SizedBox(height: 20),
@@ -60,7 +60,6 @@ class LoginView extends GetView<LoginController> {
                     SizedBox(height: 20),
                     TextFormField(
                       controller: controller.passwordController,
-                      obscureText: true,
                       decoration: InputDecoration(
                         hintText: 'Masukkan Password',
                         icon: Icon(Icons.lock),
@@ -111,7 +110,7 @@ class LoginView extends GetView<LoginController> {
                       child: Text(
                         'Register',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 18,
                         ),
                       ),
                     ),
