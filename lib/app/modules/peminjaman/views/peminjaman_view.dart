@@ -37,7 +37,7 @@ class PeminjamanView extends GetView<PeminjamanController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Nama User: ${state[index].user?.nama}",
+                      "id User: ${state[index].user}",
                       style: TextStyle(fontSize: 14),
                     ),
                     Text(
