@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:peminjaman_perpustakaan_kelasb/app/routes/app_pages.dart';
 
 import '../../../data/constant/endpoint.dart';
 import '../../../data/provider/api_provider.dart';
@@ -31,7 +32,7 @@ class RegisterController extends GetxController {
     super.onClose();
   }
 
-  register() async{
+  registerpost() async{
     loading(true);
     try{
       FocusScope.of(Get.context!).unfocus();
@@ -46,7 +47,8 @@ class RegisterController extends GetxController {
               "password": passwordController.text.toString(),
             });
         if(response.statusCode == 201){
-          Get.back();
+          Get.snackbar("Pemberitahuan", "Register Berhasil",backgroundColor: Colors.green);
+          Get.offAllNamed(Routes.LOGIN);
         } else {
           Get.snackbar("Sorry", "Login Gagal",backgroundColor: Colors.orange);
         }

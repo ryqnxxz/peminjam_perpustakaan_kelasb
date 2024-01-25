@@ -6,78 +6,136 @@ import '../controllers/register_controller.dart';
 
 class RegisterView extends GetView<RegisterController> {
   const RegisterView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('RegisterView'),
-          centerTitle: true,
+      appBar: AppBar(
+        title: Text(
+          'Register View',
+          style: TextStyle(color: Colors.white),
         ),
-        body: Center(
-            child: Form(
-              key: controller.formKey,
-              child: Column(
-                children: [
-                  TextFormField(
-                    controller: controller.namaController,
-                    decoration: InputDecoration(hintText: "Masukkan Nama"),
-                    validator: (value){
-                      if (value!.length <1){
-                        return "Nama tidak boleh kosong";
-                      }
-                      return null;
-                    },
+        centerTitle: true,
+        backgroundColor: Colors.blue,
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Form(
+            key: controller.formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 20),
+                TextFormField(
+                  controller: controller.namaController,
+                  decoration: InputDecoration(
+                    labelText: 'Nama',
+                    hintText: 'Masukkan Nama',
+                    icon: Icon(Icons.person),
                   ),
-                  TextFormField(
-                    controller: controller.usernameController,
-                    decoration: InputDecoration(hintText: "Masukkan Username"),
-                    validator: (value){
-                      if (value!.length <1){
-                        return "Username tidak boleh kosong";
-                      }
-                      return null;
-                    },
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Nama tidak boleh kosong';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                  controller: controller.usernameController,
+                  decoration: InputDecoration(
+                    labelText: 'Username',
+                    hintText: 'Masukkan Username',
+                    icon: Icon(Icons.account_circle),
                   ),
-                  TextFormField(
-                    controller: controller.telpController,
-                    decoration: InputDecoration(hintText: "Masukkan No Telp"),
-                    validator: (value){
-                      if (value!.length <2){
-                        return "No Telp tidak boleh kosong";
-                      }
-                      return null;
-                    },
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Username tidak boleh kosong';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                  controller: controller.telpController,
+                  decoration: InputDecoration(
+                    labelText: 'No Telp',
+                    hintText: 'Masukkan No Telp',
+                    icon: Icon(Icons.phone),
                   ),
-                  TextFormField(
-                    controller: controller.alamatController,
-                    decoration: InputDecoration(hintText: "Masukkan Alamat"),
-                    validator: (value){
-                      if (value!.length <2){
-                        return "Alamat tidak boleh kosong";
-                      }
-                      return null;
-                    },
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'No Telp tidak boleh kosong';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                  controller: controller.alamatController,
+                  decoration: InputDecoration(
+                    labelText: 'Alamat',
+                    hintText: 'Masukkan Alamat',
+                    icon: Icon(Icons.location_on),
                   ),
-                  TextFormField(
-                    controller: controller.passwordController,
-                    decoration: InputDecoration(hintText: "Masukkan Password"),
-                    validator: (value){
-                      if (value!.length <2){
-                        return "Password tidak boleh kosong";
-                      }
-                      return null;
-                    },
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Alamat tidak boleh kosong';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                  controller: controller.passwordController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    hintText: 'Masukkan Password',
+                    icon: Icon(Icons.lock),
                   ),
-                  Obx(() => controller.loading.value?
-                  CircularProgressIndicator():
-                  ElevatedButton(onPressed: (){
-                    Get.offAllNamed(Routes.HOME);
-                  }, child: Text("Daftar"))
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Password tidak boleh kosong';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 40),
+                Center(
+                  child: Obx(() => controller.loading.value
+                      ? CircularProgressIndicator(
+                    color: Colors.black,
                   )
-                ],
-              ),
-            )
-        )
+                    : ElevatedButton(
+                  onPressed: () {
+                    controller.registerpost();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 30,
+                      vertical: 10,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      side: BorderSide(color: Colors.lightBlueAccent),
+                    ),
+                  ),
+                  child: Text(
+                    'Daftar',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                    ),
+                  ),
+                ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

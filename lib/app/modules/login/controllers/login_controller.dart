@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peminjaman_perpustakaan_kelasb/app/data/constant/endpoint.dart';
+import 'package:peminjaman_perpustakaan_kelasb/app/data/model/response_login.dart';
 import 'package:peminjaman_perpustakaan_kelasb/app/data/provider/api_provider.dart';
 import 'package:peminjaman_perpustakaan_kelasb/app/data/provider/storage_provider.dart';
 import 'package:peminjaman_perpustakaan_kelasb/app/routes/app_pages.dart';
@@ -50,6 +51,8 @@ class LoginController extends GetxController {
                 {"username" : usernameController.text.toString(),
                   "password" : passwordController.text.toString()}));
         if (response.statusCode == 200){
+          ResponseLogin responseLogin=ResponseLogin.fromJson(response.data);
+          await StorageProvider.write(StorageKey.iduser, responseLogin.data!.id!.toString());
           await StorageProvider.write(StorageKey.status, "logged");
           Get.offAllNamed(Routes.HOME);
         } else {
